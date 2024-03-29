@@ -1,0 +1,56 @@
+$primary-color: #1772FF;
+$danger-color: #ff6347;
+$hover-color: #d42e1f;
+
+@mixin button-style {
+    background-color: $danger-color;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+
+    thead {
+        background-color: #333;
+        color: #fff;
+
+        th {
+            padding: 10px;
+            text-align: left;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid #ddd;
+
+            td {
+                padding: 10px;
+
+                a {
+                    text-decoration: none;
+                    color: $primary-color;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                form {
+                    button {
+                        @include button-style;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #e2e8f0;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #000;
+    color: #fff;
+}
+
+.table .th-action {
+    width: 150px;
+}
+
+.table-header {
+    background-color: #f0f4f8;
+}
+
+.table-row:hover {
+    background-color: #f8fafc;
+}
+
+.view-link, .edit-link, .delete-button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-right: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.view-link {
+    background-color: #4299e1;
+    color: white;
+}
+
+.edit-link {
+    background-color: #38a169;
+    color: white;
+}
+
+.delete-button {
+    background-color: #e53e3e;
+    color: white;
+}
+
+.add-mail-link, .se-deconnecter {
+    display: block;
+    width: fit-content;
+    margin-top: 20px;
+    padding: 8px 16px;
+    background-color: #000000;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.filter-input {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+}
+
+.head-recherche {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+        .hidden {
+            display: none;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f3f4f6;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .search-container select, .search-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .filter-field input[type="text"] {
+            background-color: #fff;
+        }

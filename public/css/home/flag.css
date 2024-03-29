@@ -1,0 +1,27 @@
+.language-menu {
+    padding: 5px;
+}
+
+.language-menu li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.language-menu li a {
+    display: flex;
+    align-items: center;
+}
+
+.language-menu li img {
+    width: 35px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.language-name {
+    font-size: 14px;
+}
+.language-name:hover{
+    color: aliceblue;
+}
