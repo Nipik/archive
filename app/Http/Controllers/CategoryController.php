@@ -43,4 +43,15 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('category.index')->with('success', 'La catégorie a été supprimé avec succés');
     }
+    public function archive()
+    {
+        $categories = Category::with('mails')->get();
+        return view('archive.category', compact('categories'));
+    }
+    public function showCategoryMails($id)
+    {
+        $category = Category::with('mails')->findOrFail($id);
+        return view('archive.show', compact('category'));
+    }
+
 }

@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home/isotope.css') }}" media="screen" />
     <link rel="stylesheet" href="{{ asset('js/fancybox/jquery.fancybox.css') }}" type="text/css" media="screen" />
     <link href="{{ asset('css/home/animate.css') }}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/home/loading.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!--Flag-->
     <link rel="stylesheet" href="{{ asset('css/home/flag.css') }}">
     <!-- Favicon -->
@@ -19,15 +21,18 @@
     <link rel="stylesheet" href="{{ asset('css/home/styles.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     </head>
-
     <body>
+        <div id="loadingScreen">
+            <div id="loadingLogo">
+                <i class="fas fa-envelope"></i>
+            </div>
+        </div>        
     <header class="header">
     <div class="container">
         <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
             <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
             <a href="#" class="navbar-brand scroll-top logo  animated bounceInLeft"><b><i><img src="{{ asset('images/logo.png') }}" /></i></b></a> </div>
-        <!--/.navbar-header-->
         <div id="main-nav" class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="mainNav">
             <li class="active" id="firstLink"><a href="#home" class="scroll-link">{{ __('messages.Home') }}</a></li>
@@ -405,8 +410,6 @@
                 </div>
             @endif
         </div>
-
-
         <!--/.container-->
     </div>
     </section>
@@ -461,6 +464,7 @@
     <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/owl-carousel/owl.carousel.js') }}"></script>
     <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/loading.js') }}"></script>
     </body>
     </html>
 

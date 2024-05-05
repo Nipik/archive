@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Application</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="icon" href="{{ asset('images/flyy.png') }}">
+    <title>@yield('title', 'Archive')</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        .folder-icon {
+            color: #9682ef;
+        }
+        .category-name:hover{
+            color: #9682ef;
+        }
+    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Ma Application</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('mails.index') }}">Courriers</a>
-                    </li>
-                </ul>
+<body class="bg-gray-100 text-gray-900">
+    <div class="min-h-screen flex flex-col">
+        <nav class="bg-black shadow p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <a class="text-lg font-bold">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" />
+                </a>
             </div>
-        </div>
-    </nav>
-
-    <main class="py-4">
-        @yield('content')
-    </main>
+        </nav>
+        <main class="container mx-auto flex-grow p-4">
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>

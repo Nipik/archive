@@ -11,13 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserController extends Controller
 {
-
-
     public function create(Request $request)
     {
         $user = Auth::user();
-
-
         return view('admin.add');
     }
 

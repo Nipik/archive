@@ -38,6 +38,10 @@ class AuthenticatedSessionController extends Controller
 
         if ($user && Hash::check($credentials['password'], $user->password))
         {
+            if (!$user->is_active) {
+                logger('Failed to log in for: ' . $request->input('email') . ' - Account is deactivated');
+                return redirect()->route('login')->with('error', 'Impossible de se connecter');
+            }
             $user->updateLastLogin();
 
             if ($user->role === 'admin') {
@@ -48,7 +52,7 @@ class AuthenticatedSessionController extends Controller
             else {
                 Auth::login($user);
                 logger('Successful connection: ' . $request->input('email'));
-                return redirect()->route('mail.index')->with('success', 'Bienvenue '.$user->name .' dans votre compte');
+                return redirect()->route('next')->with('success', 'Bienvenue '.$user->name .' dans votre compte');
             }
         }
         else

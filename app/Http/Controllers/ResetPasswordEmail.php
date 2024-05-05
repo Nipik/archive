@@ -5,7 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
+
 
 class ResetPasswordEmail extends Mailable
 {
@@ -29,6 +29,6 @@ class ResetPasswordEmail extends Mailable
     public function build()
     {
         return $this->from('doctrack.info@gmail.com')
-                    ->view('emails.reset_password'); 
+                    ->view('emails.reset_password');
     }
 }

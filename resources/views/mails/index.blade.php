@@ -7,10 +7,20 @@
     <title>Liste des courriers</title>
     <link rel="stylesheet" href="{{ asset('css/mails/index.css') }}">
     <link href="{{ asset('images/flyy.png') }}" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 p-4">
-    <a href="{{ route('logout') }}" class="se-deconnecter">Se déconnecter</a>
+<body class="bg-gray-100 text-gray-900">
+    @if(session('error'))
+        <div class="bg-red-200 border-red-600 border-l-4 p-4 mt-4 mb-4">
+            <p class="text-red-800">{{ session('error') }}</p>
+        </div>
+    @endif
+    <nav class="bg-black p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ route('next') }}" class="text-white text-lg font-bold"><img src="{{ asset('images/logo.png') }}" /></a>
+        </div>
+    </nav>
     @if(session('success'))
         <div class="bg-green-200 border-green-600 border-l-4 p-4 mt-4 mb-4">
             <p class="text-green-800">{{ session('success') }}</p>
@@ -78,9 +88,16 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('mail.show', $mail->id) }}" class="view-link">Voir</a>
-                            <a href="{{ route('mail.edit', $mail->id) }}" class="edit-link">Modifier</a>
-                            <button onclick="openModal('{{ $mail->id }}')" class="delete-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline btn-delete">Supprimer</button>
+                            <a href="{{ route('mail.show', $mail->id) }}" class="view-link btn-show">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            @if ($user->can_manage_documents !== 'lecteur')
+                            <a href="{{ route('mail.edit', $mail->id) }}" class="edit-link btn-edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a onclick="openModal('{{ $mail->id }}')" class="delete-link btn-delete">
+                                <i class="fas fa-trash"></i>
+                            </a>
                             <div id="modal{{ $mail->id }}" class="modal hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex justify-center items-center">
                                 <div class="modal-content bg-white w-1/2 p-4 rounded-lg">
                                     <div class="text-center mb-4">
@@ -97,12 +114,18 @@
                                 @csrf
                                 @method('DELETE')
                             </form>
+                            @endif
                         </td>
+
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('mail.create') }}" class="add-mail-link">Ajouter un courrier</a>
+        @if ($user->can_manage_documents !== 'lecteur')
+        <a href="{{ route('mail.create') }}" class="add-mail-link btn-add">
+            <i class="fas fa-plus-circle"></i>
+        </a>
+        @endif
     </div>
     <script src="{{ asset('js/filter.js') }}"></script>
 </body>

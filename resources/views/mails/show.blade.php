@@ -1,110 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Détails du courrier</title>
     <link href="{{ asset('images/flyy.png') }}" rel="icon">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #aed0f4;
-            margin: 0;
-            padding: 0;
-            animation: floatAnimation 2s infinite alternate;
-            position: relative;
-            top: 40px;
-        }
-
-        @keyframes floatAnimation {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-10px);
-            }
-        }
-
-        h1 {
-            color: #000000;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .details-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .details-container p {
-            margin-bottom: 10px;
-        }
-
-        .details-container strong {
-            color: #555;
-        }
-
-        .details-container button {
-            background-color: #aed0f4;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            position: relative;
-            left: 10px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .details-container button:hover {
-            background-color: #71a2d6;
-            transform: translateY(-5px);
-        }
-
-        .btn-show {
-            color: #000000;
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/mails/show.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Ajoutez Tailwind CSS pour plus de flexibilité dans le style -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Détails du courrier</h1>
-    <div class="details-container">
-        <p><strong>Sujet :</strong> {{ $mail->subject }}</p>
-        <p><strong>Statut :</strong> {{ $mail->status }}</p>
-        <p><strong>Date de réception :</strong> {{ $mail->reception_date }}</p>
-        <p><strong>Date d'envoi :</strong> {{ $mail->dispatch_date }}</p>
-        <p><strong>Source :</strong> {{ $mail->source }}</p>
-        <p><strong>Catégorie :</strong>
-            @if ($mail->category)
-                @foreach($mail->category as $category)
-                    {{ $category->name }}
-                @endforeach
-            @else
-                Aucune catégorie associée
-            @endif
-        </p>
-        <p><strong>Organisme :</strong>
-            @if ($mail->organism)
-                {{ $mail->organism->name }}
-            @else
-                Aucun organisme associé
-            @endif
-        </p>
-        <p><strong>Fichier :</strong>
-            @if($mail->file_path)
-                <a href="{{ asset('storage/' . $mail->file_path) }}" target="_blank" class="btn-show">Voir</a>
-            @else
-                Aucun fichier associé
-            @endif
-            <button id="printButton">Imprimer</button>
-        </p>
+
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">Détails du courrier</h2>
+        <div class="space-y-4">
+            <p class="flex items-center"><i class="fas fa-envelope mr-2 text-blue-500"></i> <strong>Sujet :</strong> {{ $mail->subject }}</p>
+            <p class="flex items-center"><i class="fas fa-clipboard-check mr-2 text-green-500"></i> <strong>Statut :</strong> {{ $mail->status }}</p>
+            <p class="flex items-center"><i class="fas fa-calendar-alt mr-2 text-red-500"></i> <strong>Date de réception :</strong> {{ $mail->reception_date }}</p>
+            <p class="flex items-center"><i class="fas fa-calendar-day mr-2 text-yellow-500"></i> <strong>Date d'envoi :</strong> {{ $mail->dispatch_date }}</p>
+            <p class="flex items-center"><i class="fas fa-info-circle mr-2 text-indigo-500"></i> <strong>Source :</strong> {{ $mail->source }}</p>
+            <p class="flex items-center"><i class="fas fa-tags mr-2 text-purple-500"></i> <strong>Catégorie :</strong>
+                @if ($mail->category)
+                    @foreach($mail->category as $category)
+                        {{ $category->name }}
+                    @endforeach
+                @else
+                    Aucune catégorie associée
+                @endif
+            </p>
+            <p class="flex items-center"><i class="fas fa-building mr-2 text-teal-500"></i> <strong>Organisme :</strong>
+                @if ($mail->organism)
+                    {{ $mail->organism->name }}
+                @else
+                    Aucun organisme associé
+                @endif
+            </p>
+            <p class="flex items-center">
+                <i class="fas fa-file-alt mr-2 text-orange-500"></i> <strong>Fichier :</strong>
+                @if($mail->file_path)
+                    <a href="{{ asset('storage/' . $mail->file_path) }}" target="_blank" class="text-blue-500 hover:text-blue-700">
+                        <i class="fas fa-eye mr-2"></i> Voir
+                    </a>
+                @else
+                    Aucun fichier associé
+                @endif
+                <button id="printButton" class="ml-4 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                    <i class="fas fa-print mr-2"></i> Imprimer
+                </button>
+            </p>
+        </div>
     </div>
 
     <script>
@@ -117,4 +64,5 @@
         });
     </script>
 </body>
+
 </html>

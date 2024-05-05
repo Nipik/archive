@@ -13,7 +13,11 @@ use App\Models\LoginHistory;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
-
+use App\Http\Controllers\UserActionController;
+use App\Http\Controllers\NextController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\UserMailController;
 
 Route::fallback(function(){
     return view('errors.404');
@@ -25,6 +29,8 @@ Route::get('/',function(){
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'login'])->name('login.login');
+Route::get('/signUp', [RegisterController::class, 'create'])->name('register');
+Route::post('/singUp', [RegisterController::class, 'store'])->name('register.store');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/mail', [MailController::class, 'index'])->name('mail.index');
@@ -34,12 +40,17 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/mail/{id}', [MailController::class, 'update'])->name('mail.update');
     Route::delete('/mail/{id}', [MailController::class, 'destroy'])->name('mail.destroy');
     Route::get('/mail/{id}', [MailController::class, 'show'])->name('mail.show');
+    Route::get('/home', [NextController::class, 'next'])->name('next');
+    Route::get('/archive', [CategoryController::class, 'archive'])->name('archive.index');
+    Route::get('/category/{id}', [CategoryController::class, 'showCategoryMails'])->name('category.show');
+    Route::get('/profile',[ProfilController::class,'index'])->name('profile');
+    Route::post('/profile/update/{user}', [ProfilController::class, 'update'])->name('profile.update');
+    Route::get('/mes-courriers', [UserMailController::class, 'index'])->name('myMail.index');
+
 });
 
 Route::middleware(['auth', 'adminUser'])->group(function () {
         Route::prefix('/admin')->group(function () {
-            Route::get('/addUser', [RegisteredUserController::class, 'create'])->name('add');
-            Route::post('/addUser', [RegisteredUserController::class, 'store'])->name('add.store');
             Route::get('/addUser', [RegisteredUserController::class, 'create'])->name('add');
             Route::post('/addUser', [RegisteredUserController::class, 'store'])->name('add.store');
             Route::get('/users', [UserController::class, 'index'])->name('admin.index');
@@ -66,6 +77,13 @@ Route::middleware(['auth', 'adminUser'])->group(function () {
                 return view('admin.login-history', ['loginHistory' => $loginHistory]);
             })->name('login.history');
             Route::get('/dashboard/details', [AdminController::class, 'detail'])->name('admin.detail');
+            Route::get('/admin/users', [UserController::class, 'user'])->name('admin.users');
+            Route::put('/admin/users/{user}/toggle', [UserController::class, 'toggleActive'])->name('admin.users.toggle');
+            Route::post('/admin/users/{userId}/permissions', [AdminController::class, 'updatePermissions'])->name('admin.users.permissions');
+            Route::get('/admin/users-actions', [UserActionController::class, 'index'])->name('user-actions.index');
+            Route::get('/admin/deleted-mails', [MailController::class, 'showDeletedMails'])->name('mail.deleted');
+            Route::delete('/mail/delete-permanently/{id}', [MailController::class, 'deletePermanently'])->name('mail.delete-permanently');
+            Route::get('/mail/deleted/{id}', [MailController::class, 'showDeleted'])->name('mail.deleted.show');
         });
 });
 Route::get('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');

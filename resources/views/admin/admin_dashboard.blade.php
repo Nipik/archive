@@ -105,11 +105,20 @@
           <ul class="nav">
             <li class="nav-item nav-category">Listes</li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('mail.index') }}">
+              <a class="nav-link" href="{{ route('next') }}">
                 <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
                 <span class="menu-title">Courriers</span>
               </a>
             </li>
+            <li class="nav-item">
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                  </ul>
+                </div>
+              </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="{{ route('login.history') }}" aria-expanded="false" aria-controls="ui-basic">
                 <span class="icon-bg"><i class="mdi mdi-crosshairs-gps menu-icon"></i></span>
@@ -130,6 +139,12 @@
               </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.users') }}">
+                  <span class="icon-bg"><i class="mdi mdi-lock menu-icon"></i></span>
+                  <span class="menu-title">Privilèges</span>
+                </a>
+              </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('organisms.index') }}">
                   <span class="icon-bg"><i class="mdi mdi-table-large menu-icon"></i></span>
                   <span class="menu-title">Organismes</span>
@@ -147,13 +162,28 @@
                 <span class="menu-title">Statistiques</span>
               </a>
             </li>
-
             <li class="nav-item sidebar-user-actions">
               <div class="sidebar-user-menu">
                 <a href="{{ route('logout') }}" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
                   <span class="menu-title">Se déconnecter</span></a>
               </div>
             </li>
+            <li class="nav-item sidebar-user-actions">
+                <div class="sidebar-user-menu">
+                  <a href="{{ route('user-actions.index') }}" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
+                    <span class="menu-title">Activité du Courrier</span>
+                  </a>
+                </div>
+              </li>
+              <li class="nav-item sidebar-user-actions">
+                <div class="sidebar-user-menu">
+                    <a href="{{ route('mail.deleted') }}" class="nav-link">
+                        <i class="mdi mdi-eye menu-icon"></i>
+                        <span class="menu-title">Courriers Supprimés</span>
+                    </a>
+                </div>
+            </li>
+
           </ul>
         </nav>
         <!-- partial -->
@@ -164,6 +194,10 @@
 
               </div>
             </div>
+            @auth
+            <h1 class="text-dark font-weight-bold mb-2">Bienvenue, {{ auth()->user()->name }}!</h1>
+            <br>
+            @endauth
             <div class="d-xl-flex justify-content-between align-items-start">
               <h2 class="text-dark font-weight-bold mb-2">Tableau de bord</h2>
               <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
@@ -206,15 +240,15 @@
                       </div>
                       <div class="col-xl-3  col-lg-6 col-sm-6 grid-margin stretch-card">
                         <div class="card">
-                          <div class="card-body text-center">
-                            <h5 class="mb-2 text-dark font-weight-normal">Dernière connexion</h5>
-                            <h2 class="mb-4 text-dark font-weight-bold">{{ $userName }}</h2>
-                            <div class="dashboard-progress dashboard-progress-3 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-eye icon-md absolute-center text-dark"></i></div>
-                            <p class="mt-4 mb-0">Le nom de dernier utilisateur</p>
-                            <h3 class="mb-0 font-weight-bold mt-2 text-dark">Connécté</h3>
-                          </div>
+                            <div class="card-body text-center">
+                                <h5 class="mb-2 text-dark font-weight-normal">Dernière connexion</h5>
+                                <h2 class="mb-4 text-dark font-weight-bold">{{ $lastLoggedInUserName }}</h2>
+                                <div class="dashboard-progress dashboard-progress-3 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-eye icon-md absolute-center text-dark"></i></div>
+                                <p class="mt-4 mb-0">Le nom de dernier utilisateur</p>
+                                <h3 class="mb-0 font-weight-bold mt-2 text-dark">Connécté</h3>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                       <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body text-center">
@@ -231,27 +265,33 @@
                     <tr>
                         <th>Nom</th>
                         <th>Profil</th>
-                        <th>Rôle</th>
+                        <th>Statut</th>
                         <th>Dernière Connexion</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
-                    <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>
-                            @if($user->image)
-                                <img src="{{ asset("storage/{$user->image}") }}" alt="Image de profil" width="50px">
-                            @else
-                                Aucune image
-                            @endif
-                        </td>
-                        <td>{{ ucfirst($user->role) }}</td>
-                        <td>{{ $user->last_login ?? 'N/A' }}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>
+                                @if($user->image)
+                                    <img src="{{ asset("storage/{$user->image}") }}" alt="Image de profil" width="50px">
+                                @else
+                                    Aucune image
+                                @endif
+                            </td>
+                            <td>
+                                @if($user->isOnline())
+                                    <span class="circle-green"></span> En ligne
+                                @else
+                                    <span class="circle-red"></span> Hors ligne
+                                @endif
+                            </td>
+                            <td>{{ $user->last_login ?? 'N/A' }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
-    </div>
-  </body>
+      </div>
+    </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-
 return [
     'Home' => '首页',
     'Support' => '支持',
@@ -23,7 +22,7 @@ return [
     'The DocTrack application is a modern and efficient solution designed to simplify and optimize the management of medical letters within healthcare establishments.'=>'DocTrack 应用程序是一种现代高效的解决方案，旨在简化和优化医疗机构内医疗函件的管理。',
     'By combining advanced document management features with an intuitive user interface, DocTrack provides healthcare professionals with a powerful tool to efficiently manage the constant flow of incoming and outgoing mail.'=>'通过将先进的文档管理功能与直观的用户界面结合在一起，DocTrack 为医疗专业人员提供了一个强大的工具，以有效地管理不断涌入和流出的邮件。',
     'Our services'=>'我们的服务',
-    'Discover our mail management services'=>'发现我们的邮件管理服务',
+    'Discover our mail management services'=>'发现我们  的邮件管理服务',
     'We offer a secure archiving service for you, guaranteeing reliable and accessible storage of important documents.'=>'我们为您的医疗函件提供安全的存档服务，保证重要文件的可靠和可访问存储。',
     'ur system allows efficient classification of letters based on personalized criteria, thus facilitating the search and management of documents.'=>'我们的系统允许根据个性化标准对函件进行高效分类，从而便于搜索和管理文档。',
     'You can easily edit the information in saved mails, ensuring the data is accurate and up-to-date.'=>'您可以轻松编辑保存的邮件中的信息，确保数据准确和最新。',

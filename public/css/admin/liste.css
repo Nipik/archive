@@ -1,220 +1,32 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: -30px;
-}
-
-.container {
-    margin-top: 50px;
-}
-
-.card {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    padding: 15px;
-}
-.card-header:hover {
-   cursor: default;
-   background-color: #ffffff;
-   color: #000000;
-   border: 1px solid #000000;
-   padding: 15px;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.table {
-    width: 100%;
-    margin-bottom: 0;
-    background-color: #fff;
-}
-
-.table th, .table td {
-    padding: 12px 15px;
-    text-align: center;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.btn {
-    padding: 8px 12px;
-    margin-right: 5px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border: none;
-    color: #fff;
-    text-decoration: none;
-    font-size: large;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    border: none;
-    color: #fff;
-    text-decoration: none;
-    font-size: large;
-}
-
-.btn-logout {
-    display:inline-block;
-    padding:0.35em 1.2em;
-    border:0.1em solid #000000;
-    margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    color:#000000;
-    text-align:center;
-    transition: all 0.2s;
-    position: relative;
-    left: 20px;
-}
-.btn-logout:hover{
-    color:#ffffff;
-    background-color:#000000;
-}
-@media all and (max-width:30em){
-    a.button1{
-    display:block;
-    margin:0.4em auto;
-    }
-}
-
-.btn:hover, .btn-primary:hover, .btn-danger:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
-    background-color: #f4f4f4;
-    color: black;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
+.profile-img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    transition: transform 0.3s;
+    object-fit: cover;
+}
+.btn-apparence{
+    background-color:#60a8ff;
+    border-color: #60a8ff;
 }
 
-img:hover {
-    transform: scale(1.2);
+.btn-sm {
+    margin: 0 5px;
 }
-
-@media (max-width: 768px) {
-    .table th, .table td {
-        padding: 8px;
-    }
-}
-
-.id-th {
-    background-color: #3498db;
-    color: #fff;
-}
-
-.name-th {
-    background-color: #e74c3c;
-    color: #fff;
-}
-
-.email-th {
-    background-color: #2ecc71;
-    color: #fff;
-}
-.lastName-th{
-    background-color: #6ec3ed;
-    color: #fff;
-}
-.add-btn{
+.btn-left{
     position: relative;
-    left: 1099px;
+    left: 450px;
 }
-.btn-second {
-    background-color: #000000;
-    border: none;
-    color: #fff;
-    text-decoration: none;
-    font-size: large;
-}
-.image-th {
-    background-color: #f39c12;
-    color: #fff;
-}
-
-.action-th {
-    background-color: #9b59b6;
-    color: #fff;
-}
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-  }
-
-  .alert-danger {
-    position: fixed;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    padding: 10px;
-    text-align: center;
-    border: 2px solid #ffffff;
-    background-color: rgba(248, 215, 218, 0);
-    color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards, fadeOut 0.5s ease-in 4.5s forwards;
-  }
-
-  .alert-success {
-    color: #ffffff;
-    background-color: rgba(248, 215, 218, 0);
-    position: fixed;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    padding: 10px;
-    text-align: center;
-    border: 2px solid #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards, fadeOut 0.5s ease-in 4.5s forwards;
-  }
-.add-btn{
+.btn-right{
     position: relative;
-    left:1329px;
+    right: 450px;
+}
+table {
+    width: 100%; 
+}
+
+table th, table td {
+    padding: 100px; 
+}
+.card-body {
+    padding: 0px;
 }

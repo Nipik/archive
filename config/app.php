@@ -43,6 +43,7 @@ return [
     */
 
     'debug' => (bool) env('APP_DEBUG', false),
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -168,6 +169,7 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge([
         Livewire\LivewireServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -189,6 +191,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Livewire' => Livewire\Livewire::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ])->toArray(),
 
 ];

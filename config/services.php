@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'analytics' => [
+        'property_id' => env('ANALYTICS_PROPERTY_ID'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

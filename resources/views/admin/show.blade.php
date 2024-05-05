@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User profile</title>
+    <title>Profile de {{ $user->name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="{{ asset('images/flyy.png') }}" rel="icon">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .btn-return{
-            position: relative;
-            left: 60px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/admin/show.css') }}">
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Profile de {{ $user->name }} :</h1>
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <p class="text-gray-600"><strong>ID:</strong> {{ $user->id }}</p>
-                    <p class="text-gray-600"><strong>Nom:</strong> {{ $user->name }}</p>
-                    <p class="text-gray-600"><strong>Prénom:</strong> {{ $user->lastName }}</p>
-                    <p class="text-gray-600"><strong>Email:</strong> {{ $user->email }}</p>
-                </div>
-                <div class="flex justify-center items-center">
-                    @if($user->image)
-                        <img src="{{ asset("storage/{$user->image}") }}" alt="Profile Image" class="rounded-full h-32 w-32 object-cover" style="border: 4px solid #4299e1;">
-                    @else
-                        <p class="text-gray-600">Aucune image pour le moment.</p>
-                    @endif
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card profile-card">
+                    <div class="card-header profile-heading">
+                        Profile de {{ $user->name }}
+                    </div>
+                    <div class="card-body profile-details">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                @if($user->image)
+                                    <img src="{{ asset("storage/{$user->image}") }}" alt="Profile Image" class="profile-image">
+                                @else
+                                    <p>Aucune image pour le moment.</p>
+                                @endif
+                            </div>
+                            <div class="col-md-8">
+                                <p><span class="profile-label">ID:</span> {{ $user->id }}</p>
+                                <p><span class="profile-label">Nom:</span> {{ $user->name }}</p>
+                                <p><span class="profile-label">Prénom:</span> {{ $user->lastName }}</p>
+                                <p><span class="profile-label">Email:</span> {{ $user->email }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="{{ route('admin.index') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md btn-return">Retour</a>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

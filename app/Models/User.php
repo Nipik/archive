@@ -21,8 +21,8 @@ class User extends Authenticatable
         'is_active',
         'last_login',
         'has_unread_notification',
+        'can_manage_documents'
     ];
-
     protected $hidden = [
         'password',
     ];
@@ -45,8 +45,11 @@ class User extends Authenticatable
 
     public function mails()
     {
-        return $this->belongsToMany(Mail::class, 'user_mail', 'user_id', 'mail_id')->withTimestamps();
+        return $this->belongsToMany(Mail::class, 'user_mail', 'user_id', 'mail_id')
+                    ->withTimestamps();
     }
+
+
     public function isAdmin()
     {
         return strtolower($this->role) === 'admin';
@@ -54,6 +57,7 @@ class User extends Authenticatable
 
     protected $dates = [
         'reception_date',
+        'last_login',
         'dispatch_date',
     ];
 
@@ -66,5 +70,15 @@ class User extends Authenticatable
     {
         return $this->attributes['dispatch_date']->format('Y-m-d');
     }
+    public function isOnline()
+    {
+        if ($this->last_login) {
+            $lastLogin = is_string($this->last_login) ? \Carbon\Carbon::parse($this->last_login) : $this->last_login;
+            return $lastLogin->gt(now()->subMinutes(15));
+        }
+
+        return false;
+    }
+
 
 }

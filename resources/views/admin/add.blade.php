@@ -11,8 +11,6 @@
     <div class="wrapper">
       <form method="POST" action="{{ route('add.store') }}" enctype="multipart/form-data">
             @csrf
-            <h2>Ajouter</h2>
-
             <div class="input-field">
                 <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus aria-labelledby="name">
                 <label for="name">Nom</label>
@@ -38,13 +36,6 @@
               <input id="password" type="password" name="password" required autocomplete="current-password" aria-labelledby="password">
                 <label for="password">Mot de passe</label>
                 @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="input-field">
-                <input id="password_confirmation" type="password" name="password_confirmation" required aria-labelledby="password_confirmation">
-                <label for="password_confirmation">Confirmer le mot de passe</label>
-                @error('password_confirmation')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

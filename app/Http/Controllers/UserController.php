@@ -80,4 +80,18 @@ class UserController extends Controller
         return view('admin.show', compact('user'));
     }
 
+    public function user()
+    {
+        $users = User::where('role', 'user')->get();
+        return view('admin.users', compact('users'));
+    }
+
+    public function toggleActive(User $user)
+    {
+        $user->is_active = !$user->is_active;
+        $user->save();
+        return redirect()->back();
+    }
+
+
 }
